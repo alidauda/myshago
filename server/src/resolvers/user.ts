@@ -71,7 +71,7 @@ export class UserResolver {
     }
     const salt = await bcrypt.hash(options.password, 10);
 
-    const user = await em.create(User, {
+    const user =  em.create(User, {
       email: options.email,
       password: salt,
     });
