@@ -1,5 +1,7 @@
 import {
+  Collection,
   Entity,
+  OneToMany,
   OptionalProps,
   PrimaryKey,
   Property,
@@ -7,6 +9,7 @@ import {
 } from '@mikro-orm/core';
 import { Field, ObjectType } from 'type-graphql';
 import { v4 } from 'uuid';
+import { Product } from './Product';
 @ObjectType()
 @Entity()
 export class User {
@@ -27,4 +30,8 @@ export class User {
   @Field(() => String)
   @Property({ type: 'date' })
   createdAt = new Date();
+
+  
+  @OneToMany(() => Product, product => product.owner)
+  product = new Collection<Product>(this);
 }

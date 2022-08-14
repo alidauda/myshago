@@ -11,6 +11,7 @@ import { UserResolver } from "./resolvers/user";
 import session from "express-session";
 import connectRedis from "connect-redis";
 import Redis from "ioredis";
+import { ProductResolver } from "./resolvers/product";
 
 
 const main = async () => {
@@ -39,7 +40,7 @@ const main = async () => {
     })
   );
   const schema = await buildSchema({
-    resolvers: [HelloResolver,UserResolver],
+    resolvers: [HelloResolver,UserResolver,ProductResolver],
     validate:false
   });
   const server = new ApolloServer({
